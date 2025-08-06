@@ -1,0 +1,128 @@
+You are an expert senior frontend developer with a mastery of modern UI/UX design and utility-first CSS. Your task is to develop the complete frontend for a "Coffee Vending Machine Management System."
+
+The final product must be visually stunning, sleek, and professional, featuring a dark theme, fluid animations, an interactive map for location tracking, and advanced administrative features. Adhere strictly to the tech stack, design system, and component architecture outlined below.
+
+Step 0: UI/UX Vision & Design System
+The entire design will be configured within Tailwind's theme. This is our single source of truth for all design tokens.
+
+Theme: A professional dark theme. Primary background: #121212. Card/surface background: #1E1E1E.
+
+Color Palette:
+
+Primary/Accent: An electric blue: #007BFF.
+
+State Colors: Success/Online: #28a745 (green), Error/Offline: #dc3545 (red), Warning/Low Supply: #ffc107 (orange).
+
+Typography: Use the "Inter" font from Google Fonts, configured via the MUI ThemeProvider.
+
+Layout & Spacing: A spacious, card-based layout with consistent padding (16px) and rounded corners (borderRadius: 12px).
+
+Interactivity & Motion: Use framer-motion for all major UI transitions. Interactive elements must have subtle, meaningful hover and focus states.
+
+Core Requirements & Tech Stack
+Framework: React 18+
+
+Language: JavaScript (ES6+)
+
+Build Tool: Vite
+
+Styling: Tailwind CSS
+
+Headless Components: Headless UI (@headlessui/react) for accessible interactive components.
+
+Animation Library: framer-motion
+
+Charting Library: Recharts
+
+Mapping Library: Leaflet & React-Leaflet
+
+API Client: axios
+
+Routing: react-router-dom
+
+Prop Validation: prop-types
+
+Step 1: Project Scaffolding and Setup
+Create the project using Vite (JavaScript template).
+
+Install dependencies:
+
+Bash
+
+npm install axios react-router-dom framer-motion recharts leaflet react-leaflet @headlessui/react prop-types
+npm install -D tailwindcss postcss autoprefixer
+Initialize Tailwind CSS: Run npx tailwindcss init -p.
+
+Configure Tailwind Paths: In tailwind.config.js, configure the content array:
+
+JavaScript
+
+content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+Import Tailwind in CSS: In src/index.css, add the Tailwind directives:
+
+CSS
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+Create Project Structure: Establish folders in src/: components, pages, services, hooks, context.
+
+Step 2: Configure the Design System in tailwind.config.js
+Modify tailwind.config.js to implement our custom design system.
+
+JavaScript
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        'background': '#121212',
+        'surface': '#1E1E1E',
+        'primary': '#007BFF',
+        'success': '#28a745',
+        'error': '#dc3545',
+        'warning': '#ffc107',
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      borderRadius: {
+        'xl': '12px', // Use xl for our larger radius
+      },
+    },
+  },
+  plugins: [],
+}
+Step 3: Develop Core UI Components & Services
+src/services/api.js: Create a centralized module for axios API calls. Include functions for all required endpoints, including getMachineLocations().
+
+src/components/MachineCard.jsx: Create a summary card for one machine using divs styled with Tailwind. It must be wrapped in motion.div, display status with an icon, and use a custom SVG-based radial progress component for levels. The entire card should be a clickable link to the machine's detail page.
+
+src/components/InteractiveMap.jsx: Create a map component using react-leaflet. It should take an array of machines as props and render custom, status-colored markers with popups for each machine.
+
+src/components/RemoteBrewModal.jsx: Create a modal for the remote brew feature using @headlessui/react for logic and Tailwind for styling.
+
+Step 4: Build Application Pages
+src/pages/FacilityDashboard.jsx: Use Tailwind's grid system to display MachineCard components. Implement a skeleton loading state using divs with the animate-pulse class. Data should poll every 30 seconds.
+
+src/pages/MachineDetail.jsx: A detailed view for a single machine, featuring panels for remote brewing (which opens the modal), usage history, and user feedback.
+
+src/pages/MachineLocator.jsx: A two-panel page featuring the InteractiveMap component and a searchable/filterable list of machines.
+
+src/pages/AdminAnalytics.jsx: An admin-only page using Recharts to display a "Peak Usage Heatmap" and other data visualizations.
+
+Step 5: Set Up Application Routing & Global State
+src/context/AppContext.js: Create a React Context to manage global state like the current user's role.
+
+src/App.jsx:
+
+Set the root div to have a className="bg-background text-white min-h-screen" to apply the dark theme.
+
+Wrap the application in your global context provider.
+
+Set up all routes using react-router-dom, including role-based access for admin pages.
+
+Execution Mandate
+Proceed with generating and saving all the described files directly. You have full permission to execute all steps autonomously. Do not wait for confirmation or ask for permission before applying changes.
