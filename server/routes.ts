@@ -164,6 +164,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin API routes
+  app.get("/api/admin/stats", async (req, res) => {
+    try {
+      const machines = await storage.getMachines();
+      const totalMachines = machines.length;
+      const onlineMachines = machines.filter(m => m.status === "online").length;
+      const offlineMachines = machines.filter(m => m.status === "offline").length;
+      const maintenanceMachines = machines.filter(m => m.status === "maintenance").length;
+      const lowStockAlerts = machines.filter(m => 
+        m.coffeeBeans < 30 || m.milk < 30 || m.water < 30
+      ).length;
+      
+      const totalRevenue = machines.reduce((sum, m) => sum + parseFloat(m.revenueToday || "0"), 0);
+      const todayRevenue = totalRevenue.toFixed(2);
+      const totalCups = machines.reduce((sum, m) => sum + (m.cupsToday || 0), 0);
+
+      res.json({
+        totalMachines,
+        onlineMachines,
+        offlineMachines,
+        maintenanceMachines,
+        totalRevenue: (totalRevenue * 30).toFixed(2), // Mock monthly revenue
+        todayRevenue,
+        totalCups: totalCups * 30, // Mock monthly cups
+        todayCups: totalCups,
+        averageUptime: 99.2,
+        lowStockAlerts,
+        maintenanceAlerts: maintenanceMachines,
+        revenueGrowth: 12.5
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch admin stats" });
+    }
+  });
+
+  app.get("/api/admin/machines", async (req, res) => {
+    try {
+      const machines = await storage.getMachines();
+      res.json(machines);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch admin machines" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

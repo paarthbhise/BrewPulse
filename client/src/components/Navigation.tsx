@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'wouter';
 import { motion } from 'framer-motion';
 import { ThemeSelector } from './ThemeSelector';
-import { Coffee, MapPin, BarChart3, Home, Palette } from 'lucide-react';
+import { Coffee, MapPin, BarChart3, Home, Palette, Shield, User, LogOut } from 'lucide-react';
 
 export function Navigation() {
   const [location] = useLocation();
@@ -57,11 +57,26 @@ export function Navigation() {
         <div className="flex items-center space-x-4">
           <ThemeSelector />
           
+          {/* Admin Access */}
+          <div className="flex items-center space-x-3">
+            <Link href="/admin/login">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center space-x-2 glass px-3 py-2 rounded-xl cursor-pointer hover:border-accent-primary transition-colors"
+                data-testid="link-admin-login"
+              >
+                <Shield className="w-4 h-4 text-accent-primary" />
+                <span className="text-sm font-medium text-text-primary hidden sm:block">Admin</span>
+              </motion.div>
+            </Link>
+          </div>
+          
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-full gradient-accent flex items-center justify-center text-white text-sm font-bold">
-              A
+              <User className="w-4 h-4" />
             </div>
-            <span className="text-sm font-medium hidden md:block text-text-primary">Admin User</span>
+            <span className="text-sm font-medium hidden md:block text-text-primary">Guest User</span>
           </div>
         </div>
       </div>

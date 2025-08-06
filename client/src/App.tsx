@@ -10,6 +10,8 @@ import MachineDetail from "@/pages/MachineDetail";
 import MachineLocator from "@/pages/MachineLocator";
 import AdminAnalytics from "@/pages/AdminAnalytics";
 import ThemeShowcase from "@/pages/ThemeShowcase";
+import AdminLogin from "@/pages/AdminLogin";
+import AdminDashboard from "@/pages/AdminDashboard";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -22,6 +24,8 @@ function Router() {
         <Route path="/locator" component={MachineLocator} />
         <Route path="/analytics" component={AdminAnalytics} />
         <Route path="/themes" component={ThemeShowcase} />
+        <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/admin" component={AdminDashboard} />
         {/* Fallback to 404 */}
         <Route component={NotFound} />
       </Switch>

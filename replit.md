@@ -1,6 +1,13 @@
 # Overview
 
-This is a Coffee Vending Machine Management System built as a full-stack web application. The system provides comprehensive management capabilities for coffee vending machines including real-time monitoring, remote brewing, location tracking via interactive maps, and detailed analytics. The application features a modern dark-themed UI with multiple theme options, interactive dashboards, and administrative tools for managing a fleet of coffee machines.
+This is a Coffee Vending Machine Management System built as a full-stack web application. The system provides comprehensive management capabilities for coffee vending machines including real-time monitoring, remote brewing, location tracking via interactive maps, and detailed analytics. The application features a modern premium UI with 8 sophisticated themes, interactive dashboards, administrative tools for managing a fleet of coffee machines, and a complete admin portal with authentication and user management.
+
+## Recent Changes
+
+- **Premium Theme System**: Enhanced to 8 premium themes (Dark Professional, Light Minimal, Midnight Blue, Forest Green, Warm Copper, Deep Purple, Arctic Ice, Rose Gold) with advanced glass morphism effects, neural background patterns, and sophisticated visual design
+- **Theme Showcase Page**: Dedicated page (/themes) featuring interactive theme preview cards with live demonstrations
+- **Admin Portal**: Complete admin authentication and dashboard system with login page, user management, and advanced system monitoring
+- **Enhanced Navigation**: Added admin access buttons and improved UI with floating theme selector
 
 # User Preferences
 
